@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"  />
+	<title>书籍详情</title>
+	<link rel="stylesheet" type="text/css" href="src/detail-book/index.css" />
+</head>
+<body>
+<script type="text/tmpl" id="J-tmpl-page">
+	<section class="detail-summary dib-wrap">
+		<div class="summary-photo dib" style="background-image: url(<%= bookInfo.pagePic %>);">
+			<i class="icon icon-play"></i>
+			<p>有<b>1234</b>书单收录</p>
+		</div>
+		<ul class="summary-info dib">
+			<li class="summary-name"><h1><%= bookInfo.name %></h1></li>
+			<li class="summary-score">
+				<div class="score-star dib-wrap">
+					<div class="star-bar dib">
+						<i></i><i></i><i></i><i></i><i class="last"></i>
+						<div class="star-bar-inner" style="width: <%= bookInfo.score/10*100 %>%;"><i></i><i></i><i></i><i></i><i class="last"></i></div>
+					</div>
+					<em class="dib"><%= bookInfo.score %>分</em>
+				</div>
+			</li>
+			<li class="summary-author"><%= bookInfo.authorName %></li>
+			<li><%= bookInfo.press %></li>
+		</ul>
+	</section>
+	<section class="detail-section">
+		<header class="dib-wrap">
+			<h2 class="dib">书摘( 10 )</h2>
+			<a class="dib" href="#">查看全部</a>
+		</header>
+		<div class="detail-imgs dib-wrap">
+			<div class="img-square dib" style="background-image: url('imgs/image5.png');"></div>
+			<div class="img-square dib" style="background-image: url('imgs/image5.png');"></div>
+			<div class="img-square dib" style="background-image: url('imgs/image5.png');"></div>
+			<div class="img-square dib" style="background-image: url('imgs/image5.png');"></div>
+		</div>
+	</section>
+	<section class="detail-section detail-section-row detail-comments">
+		<header>
+			<h2>最新点评 ( 50 )</h2>
+		</header>
+		<div class="comments">
+			<div class="comment-item dib-wrap">
+				<div class="comment-img img-square dib" style="background-image: url('imgs/image5.png');"></div>
+				<ul class="comment-c dib">
+					<li class="comment-author">王家收</li>
+					<li class="comment-date">13小时前</li>
+					<li class="comment-summary">张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。</li>
+				</ul>
+				<div class="comment-good"><i class="icon icon-good"></i><span>1234</span></div>
+			</div>
+			<div class="comment-item dib-wrap">
+				<div class="comment-img img-square dib" style="background-image: url('imgs/image5.png');"></div>
+				<ul class="comment-c dib">
+					<li class="comment-author">王家收</li>
+					<li class="comment-date">13小时前</li>
+					<li class="comment-summary">张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。</li>
+				</ul>
+				<div class="comment-good"><i class="icon icon-good"></i><span>1234</span></div>
+			</div>
+		</div>
+	</section>
+</script>
+
+<div id="J-page-container"></div>
+
+<script src="lib/zepto/zepto.min.js"></script>
+<script src="lib/underscore/underscore-min.js"></script>
+<script src="src/detail-book/index.js"></script>
+</body>
+</html>

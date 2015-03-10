@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script>
+	$(function(){
+
+		$.ajax({
+			url: 'http://pre.duyao001.com/w/view_onebooklist/154121626143817728/1/1',
+			type: 'get',
+			dataType: 'jsonp'
+		}).done(function(result){
+			console.log(result);
+		});
+
+	});
+	</script>
+</head>
+<body>
+
+</body>
+</html>

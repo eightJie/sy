@@ -1,0 +1,182 @@
+@import "../common/header.less";
+@import "../../components/detail-comments/index.less";
+
+.comment-main{
+	background-color: #fff;
+	margin-bottom: 10px;
+	padding: 20px 30/640*100% 18px;
+
+	.comment-info{
+		margin-bottom: 6px;
+	}
+
+	.comment-photo{
+		width: 70 / 580 * 100%;
+		margin-right: 20/580 * 100%;
+		vertical-align: middle;
+	}
+
+	.comment-r{
+		width: 490/580 * 100%;
+		vertical-align: middle;
+	}
+
+	.comment-author{
+		color: #28a5dc;
+		font-size: 15px;
+	}
+
+	.comment-date{
+		color: #969695;
+		float: right;
+		font-size: 10px;
+
+		.icon-time{
+			margin-right: 5px;
+		}
+	}
+
+	.comment-content{
+		p{
+			color: #3d3d3d;
+			font-size: 15px;
+			line-height: 34px;
+			text-indent: 2em;
+			margin-bottom: 8px;
+		}
+	}
+
+}
+
+
+.book-info{
+	border: 1px solid #e3e2e0;
+	background-color: #f8f8f8;
+	position: relative;
+
+	.icon-corner{
+		background-color: #fff;
+		position: absolute;
+		right: -1px;
+		top: -1px;
+	}
+}
+
+.book-img{
+	width: 107/580 * 100%;
+	margin-right: 30/580 * 100%;
+	&:before{
+		margin-top: 159/107 * 100%;
+	}
+}
+
+.book-r{
+	width: (580 - 107 - 30)/580 * 100%;
+	padding-top: 10px;
+	padding-right: 10px;
+}
+
+.book-name{
+	color: #373737;
+	line-height: 1.5;
+	margin-bottom: 7px;
+}
+
+.book-author{
+	color: #6e6e6e;
+	margin-bottom: 11px;
+}
+
+.comment-other{
+	background-color: #fff;
+	border-bottom: 1px solid #e1e1e1;
+}
+
+.tab-nav{
+	background-color: #fafafa;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #e1e1e1;
+	padding: 0 30/640 * 100%;
+	position: relative;
+
+	li{
+		padding: 11px 0 12px;
+		position: relative;
+		bottom: -1px;
+
+		.icon-nav-arrow{
+			background-color: #fafafa;
+			display: none;
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			margin-left: -6.5px;
+		}
+		a{
+			color: #969696;
+			display: inline-block;
+			font-size: 13px;
+		}
+	}
+	li.active{
+		color: #328cf0;
+
+		.icon-nav-arrow{
+			display: block;
+		}
+	}
+	.nav-1{
+		float: left;
+	}
+	.nav-2, .nav-3{
+		float: right;
+	}
+	.nav-2 a{
+		border-right: 1px solid #e1e1e1;
+		padding-right: 20px;
+	}
+	.nav-3 a{
+		padding-right: 10px;
+		padding-left: 20px;
+	}
+}
+
+.tab-content{
+	>div{
+		display: none;
+	}
+}
+
+.awards{
+	.award-item{
+		border-bottom: 1px solid #e1e1e1;
+		padding: 24px 30/640 * 100% 20px;
+	}
+	.award-photo{
+		width: 60/580 * 100%;
+		margin-right: 30/580 * 100%;
+	}
+	.award-r{
+		width: 490/580 * 100%;
+	}
+	.award-author{
+		color: #328cf0;
+		font-size: 15px;
+		margin-bottom: 14/490 * 100%;
+		width: 49%;
+	}
+	.award-money{
+		color: #444;
+		font-size: 15px;
+		width: 49%;
+		text-align: right;
+		b{
+			color: #f49f31;
+		}
+	}
+	.award-comment{
+		color: #969696;
+		font-size: 12px;
+		line-height: 1.5;
+	}
+}

@@ -10,7 +10,7 @@
 <script type="text/tmpl" id="J-tmpl-page">
 	<section class="comment-main">
 		<div class="comment-info dib-wrap">
-			<div class="comment-photo img-square dib" style="background-image: url(<%= resourceInfo.userEntity.face_url.replace(/_\d+x\d+\.(jpg|png)$/, '_80x.$1') %>);"></div>
+			<div class="comment-photo img-square dib" style="background-image: url(<%= resourceInfo.userEntity.face_url.replace(/(_\d+x\d+)?\.(jpg|png)$/, '_80x.$2') %>);"></div>
 			<div class="comment-r dib">
 				<span class="comment-author"><%= resourceInfo.userEntity.nickName %></span>
 				<span class="comment-date"><i class="icon icon-time"></i><%= resourceInfo.btime %></span>
@@ -89,7 +89,7 @@
 	<div class="detail-comments">
 		<% _.forEach(list, function(item){%>
 		<div class="comment-item dib-wrap">
-			<div class="comment-img img-square dib" style="background-image: url(<%= item.userEntity.face_url.replace(/_\d+x\d+\.(jpg|png)$/, '_80x.$1') %>);"></div>
+			<div class="comment-img img-square dib" style="background-image: url(<%= item.userEntity.face_url.replace(/(_\d+x\d+)?\.(jpg|png)$/, '_80x.$2') %>);"></div>
 			<ul class="comment-c dib">
 				<li class="comment-author"><%= item.userEntity.nickName %></li>
 				<li class="comment-date"><%= item.btime %></li>
@@ -108,7 +108,7 @@
 	<ul class="favours">
 		<% _.forEach(list, function(item){%>
 		<li>
-			<div class="img-square dib" style="background-image: url(<%= item.userEntity.face_url.replace(/_\d+x\d+\.(jpg|png)$/, '_80x.$1') %>);"></div>
+			<div class="img-square dib" style="background-image: url(<%= item.userEntity.face_url.replace(/(_\d+x\d+)?\.(jpg|png)$/, '_80x.$2') %>);"></div>
 			<div class="favour-author-name dib"><%= item.userEntity.nickName %></div>
 		</li>
 		<% }) %>

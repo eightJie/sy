@@ -15,7 +15,7 @@ $(function() {
 
 			$('#J-tab-nav>li').on('click', function(e) {
 				var nav = $(this);
-				var order = nav.attr('id').match(/\d+/)[0]
+				var order = nav.attr('id').match(/\d+/)[0];
 				var content = $('#tab-content-' + order);
 
 				nav.parent().children().removeClass('active');
@@ -51,7 +51,7 @@ $(function() {
 			url: HOST + '/w/view_onecommentlist.do',
 			dataType: 'jsonp',
 			data: {
-				id: 178411185773875200,
+				id: id,
 				type: 0,
 				lastId: 0
 			},
@@ -71,7 +71,7 @@ $(function() {
 			url: HOST + '/w/view_onecommentlist.do',
 			dataType: 'jsonp',
 			data: {
-				id: 178411185773875200,
+				id: id,
 				type: 1,
 				lastId: 0
 			},

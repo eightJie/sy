@@ -10,8 +10,8 @@
 <script type="text/tmpl" id="J-tmpl-page">
 	<section class="detail-summary dib-wrap">
 		<div class="summary-photo dib" style="background-image: url(<%= movieInfo.moviePic %>);">
-			<% if(movieInfo.trailers){ %>
-			<a href="<%= movieInfo.trailers %>"><i class="icon icon-play"></i></a>
+			<% if(movieInfo.trailers && movieInfo.trailers[0]){ %>
+			<a href="<%= movieInfo.trailers[0]['trailerVideoUrl'] %>"><i class="icon icon-play"></i></a>
 			<% } %>
 			<p style="display:none;">有<b><%= movieInfo.cNum %></b>影单收录</p>
 		</div>
@@ -31,7 +31,7 @@
 					</div>
 				</div>
 			</li>
-			<li><label>导演:</label><span><%= movieInfo.director %></span></li>
+			<li class="summary-director"><label>导演:</label><span><%= movieInfo.director %></span></li>
 			<li><label>类型:</label><span><%= movieInfo.tags.join(', ') %></span></li>
 			<li><label class="actors-label">主演:</label><div class="summary-actors"><% _.each(movieInfo.actor, function(name, i){%><span><%= name %><% if(i!=movieInfo.actor.length-1){ %> <i>/</i><% } %></span><% }) %></div></li>
 		</ul>
@@ -50,10 +50,12 @@
 			<% }%>
 			<% }) %>
 		</div>
+		<% if(movieInfo.describe){ %>
 		<div class="intro-txt">
 			<p><%= movieInfo.describe.replace(/<style>.*<\/style>/g, '').replace(/<\/?[^>]*>/g,'') %></p>
 			<div class="J-intro-show icon-arrow-wrap"><i class="icon icon-arrow"></i></div>
 		</div>
+		<% } %>
 	</section>
 	<% } %>
 	<section style="display:none;" class="detail-section detail-deep">
@@ -83,7 +85,7 @@
 		<% _.each(list, function(comment, i){ %>
 		<a href="detail-movie-comment.html?id=<%= comment.mvCommentIdStr || comment.mvCommentId %>">
 			<div class="comment-item dib-wrap">
-				<div class="comment-img img-square dib" style="background-image: url(<%= comment.userEntity.face_url.replace(/_\d+x\d+\.(jpg|png)$/, '_80x.$1') %>);"></div>
+				<div class="comment-img img-square dib" style="background-image: url(<%= comment.userEntity.face_url.replace(/(_\d+x\d+)?\.(jpg|png)$/, '_80x.$2') %>);"></div>
 				<ul class="comment-c dib">
 					<li class="comment-author"><%= comment.userEntity.nickName %></li>
 					<li class="comment-date"><%= comment.btime %></li>

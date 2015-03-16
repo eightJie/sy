@@ -15,7 +15,7 @@
 				<div class="summary-name"><%= bookListInfo.name %></div>
 				<div class="summary-author dib-wrap">
 					<span class="author-name dib"><%= bookListInfo['userEntity']['nickName'] %></span>
-					<span class="author-photo img-circle dib" style="background-image: url(<%= bookListInfo['userEntity']['face_url'].replace(/_\d+x\d+\.(jpg|png)$/, '_80x.$1') %>);"></span>
+					<span class="author-photo img-circle dib" style="background-image: url(<%= bookListInfo['userEntity']['face_url'].replace(/(_\d+x\d+)?\.(jpg|png)$/, '_80x.$2') %>);"></span>
 				</div>
 				<div class="summary-tags">
 					<% _.each(bookListInfo.tags, function(tag){%>

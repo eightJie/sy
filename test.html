@@ -4,20 +4,27 @@
 	<title></title>
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script>
-	$(function(){
+	// $(function(){
 
-		$.ajax({
-			url: 'http://pre.duyao001.com/w/view_onebooklist/154121626143817728/1/1',
-			type: 'get',
-			dataType: 'jsonp'
-		}).done(function(result){
-			console.log(result);
-		});
+	// 	$.ajax({
+	// 		url: 'http://pre.duyao001.com/w/view_onebooklist/154121626143817728/1/1',
+	// 		type: 'get',
+	// 		dataType: 'jsonp'
+	// 	}).done(function(result){
+	// 		console.log(result);
+	// 	});
 
-	});
+	// });
+	
+
 	</script>
 </head>
 <body>
-
+<!-- <img src="http://t10.baidu.com/it/u=2015630436,2191713211&fm=32&s=2DF2EB04CE6A24942384B08A0100F093&w=533&h=800&img.JPEG"/> -->
+<img id="J-img" src="" />
+<script type="text/javascript">
+	var url = 'http://img3.douban.com/view/photo/photo/public/p455722535.jpg';
+	document.getElementById('J-img').setAttribute('src', url+'?v=' + (new Date()).getTime())
+</script>
 </body>
 </html>

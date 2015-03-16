@@ -11,7 +11,7 @@
 	<section class="detail-summary dib-wrap">
 		<div class="summary-photo dib" style="background-image: url(<%= bookInfo.pagePic %>);">
 			<i class="icon icon-play"></i>
-			<p>有<b>1234</b>书单收录</p>
+			<p style="display:none;">有<b>1234</b>书单收录</p>
 		</div>
 		<ul class="summary-info dib">
 			<li class="summary-name"><h1><%= bookInfo.name %></h1></li>
@@ -28,43 +28,50 @@
 			<li><%= bookInfo.press %></li>
 		</ul>
 	</section>
-	<section class="detail-section">
-		<header class="dib-wrap">
-			<h2 class="dib">书摘( 10 )</h2>
-			<a class="dib" href="#">查看全部</a>
-		</header>
-		<div class="detail-imgs dib-wrap">
-			<div class="img-square dib" style="background-image: url('imgs/image5.png');"></div>
-			<div class="img-square dib" style="background-image: url('imgs/image5.png');"></div>
-			<div class="img-square dib" style="background-image: url('imgs/image5.png');"></div>
-			<div class="img-square dib" style="background-image: url('imgs/image5.png');"></div>
-		</div>
+	<section id="J-summary-container" class="detail-section">
 	</section>
 	<section class="detail-section detail-section-row detail-comments">
 		<header>
-			<h2>最新点评 ( 50 )</h2>
+			<h2>最新点评 ( <span id="J-comments-total"></span> )</h2>
 		</header>
-		<div class="comments">
-			<div class="comment-item dib-wrap">
-				<div class="comment-img img-square dib" style="background-image: url('imgs/image5.png');"></div>
-				<ul class="comment-c dib">
-					<li class="comment-author">王家收</li>
-					<li class="comment-date">13小时前</li>
-					<li class="comment-summary">张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。</li>
-				</ul>
-				<div class="comment-good"><i class="icon icon-good"></i><span>1234</span></div>
-			</div>
-			<div class="comment-item dib-wrap">
-				<div class="comment-img img-square dib" style="background-image: url('imgs/image5.png');"></div>
-				<ul class="comment-c dib">
-					<li class="comment-author">王家收</li>
-					<li class="comment-date">13小时前</li>
-					<li class="comment-summary">张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。</li>
-				</ul>
-				<div class="comment-good"><i class="icon icon-good"></i><span>1234</span></div>
-			</div>
+		<div id="J-comments-container" class="comments">
+
 		</div>
 	</section>
+</script>
+<script type="text/tmpl" id="J-summary-tmpl">
+<% if(list.length > 0){ %>
+	<header class="dib-wrap">
+		<h2 class="dib">书摘( <%= list.length %> )</h2>
+		<a class="dib" href="list-book.html?id=<%= d.id %>">查看全部</a>
+	</header>
+	<div class="detail-imgs dib-wrap">
+		<%var sIndex = 0; _.each(list, function(item){ %>
+			<% _.each(item.bookTalk, function(talk){%>
+			<% if(sIndex++ < 4){ %>
+			<div class="img-square dib" style="background-image: url(<%= talk.list[0] && talk.list[0].content.replace('.jpg', '_240x240.jpg') %>);"></div>
+			<% } %>
+			<% }) %>
+		<% }) %>
+	</div>
+<% } %>
+</script>
+<script type="text/tmpl" id="J-comments-tmpl">
+<% if(list.length){ %>
+	<% _.each(list, function(comment, i){ %>
+	<a href="detail-book-comment.html?id=<%= comment.bkCommentIdStr || comment.bkCommentId %>">
+		<div class="comment-item dib-wrap">
+			<div class="comment-img img-square dib" style="background-image: url(<%= comment.userEntity.face_url.replace(/_\d+x\d+\.(jpg|png)$/, '_80x.$1') %>);"></div>
+			<ul class="comment-c dib">
+				<li class="comment-author"><%= comment.userEntity.nickName %></li>
+				<li class="comment-date"><%= comment.btime %></li>
+				<li class="comment-summary"><%= comment.contList[0].content %></li>
+			</ul>
+			<div class="comment-good"><i class="icon icon-good"></i><span><%= comment.zNum %></span></div>
+		</div>
+	</a>
+	<% }) %>
+<% } %>
 </script>
 
 <div id="J-page-container"></div>

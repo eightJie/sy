@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"  />
+	<title>影评详情</title>
+	<link rel="stylesheet" type="text/css" href="src/detail-movie-comment/index.css" />
+</head>
+<body>
+<script type="text/tmpl" id="J-tmpl-page">
+	<section class="comment-main">
+		<div class="comment-info dib-wrap">
+			<div class="comment-photo img-square dib" style="background-image: url(<%= resourceInfo.userEntity.face_url.replace(/_\d+x\d+\.(jpg|png)$/, '_80x.$1') %>);"></div>
+			<div class="comment-r dib">
+				<span class="comment-author"><%= resourceInfo.userEntity.nickName %></span>
+				<span class="comment-date"><i class="icon icon-time"></i><%= resourceInfo.btime %></span>
+			</div>
+		</div>
+		<div class="comment-content">
+			<%= resourceInfo.contList[0] && resourceInfo.contList[0].content %>
+		</div>
+		<a href="detail-movie.html?id=<%= resourceInfo.movieInfo.idStr || resourceInfo.movieInfo.id %>">
+			<div class="book-info dib-wrap">
+				<div class="book-img img-rect dib" style="background-image: url(<%= resourceInfo.movieInfo.moviePic %>);"></div>
+				<ul class="book-r dib">
+					<li class="book-name"><%= resourceInfo.movieInfo.name %></li>
+					<li class="book-author">导演:<em><%= resourceInfo.movieInfo.director %></em></li>
+					<li>
+						<div class="score-star dib-wrap">
+							<div class="star-bar dib">
+								<i></i><i></i><i></i><i></i><i class="last"></i>
+								<div class="star-bar-inner" style="width: <%= resourceInfo.movieInfo.score/10*100 %>%;"><i></i><i></i><i></i><i></i><i class="last"></i></div>
+							</div>
+							<em class="dib"><%= resourceInfo.movieInfo.score %>分</em>
+						</div>
+					</li>
+				</ul>
+				<em class="icon-corner"></em>
+			</div>
+		</a>
+	</section>
+
+	<section class="comment-other">
+		<ul id="J-tab-nav" class="tab-nav clearfix">
+			<li id="nav-1" class="nav-1 active"><a href="javascript:void(0);">评论 <span id="J-comments-num">50</span></a><i class="icon-nav-arrow"></i></li>
+			<!--<li id="nav-3" class="nav-3"><a href="javascript:void(0);">打赏 12</a><i class="icon-nav-arrow"></i></li>-->
+			<li id="nav-2" class="nav-2"><a href="javascript:void(0);">赞 <span id="J-favours-num"></span></a><i class="icon-nav-arrow"></i></li>
+		</ul>
+		<div id="J-tab-content" class="tab-content">
+			<div id="tab-content-1" style="display:block;">
+			</div>
+			<div id="tab-content-2">
+			</div>
+			<div id="tab-content-3">
+				<div class="awards">
+					<div class="award-item dib-wrap">
+						<div class="award-photo img-square dib" style="background-image: url('imgs/image3.png');"></div>
+						<ul class="award-r dib">
+							<li class="dib-warp">
+								<span class="award-author dib">林夕大魔王</span>
+								<span class="award-money dib">
+									赏了<b>&yen;12.09</b>元
+								</span>
+							</li>
+							<li class="award-comment">留言: 写得真是太好了，我怎么就写不出来这种感受呢写得真是太好了，我怎么就写不出来这种感受呢写得真是太好了，我怎么就写不出来这种感受呢写得真是太好了，我怎么就写不出来这种感受呢</li>
+						</ul>
+					</div>
+					<div class="award-item dib-wrap">
+						<div class="award-photo img-square dib" style="background-image: url('imgs/image3.png');"></div>
+						<ul class="award-r dib">
+							<li class="dib-warp">
+								<span class="award-author dib">林夕大魔王</span>
+								<span class="award-money dib">
+									赏了<b>&yen;12.09</b>元
+								</span>
+							</li>
+							<li class="award-comment">留言: 写得真是太好了，我怎么就写不出来这种感受呢写得真是太好了，我怎么就写不出来这种感受呢写得真是太好了，我怎么就写不出来这种感受呢写得真是太好了，我怎么就写不出来这种感受呢</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</script>
+<script type="text/tmpl" id="J-comments-tmpl">
+<% if(list.length == 0){ %>
+	<p class="empty">还没有评论数据哦~</p>
+<% }else{ %>
+	<div class="detail-comments">
+		<% _.forEach(list, function(item){%>
+		<div class="comment-item dib-wrap">
+			<div class="comment-img img-square dib" style="background-image: url(<%= item.userEntity.face_url.replace(/_\d+x\d+\.(jpg|png)$/, '_80x.$1') %>);"></div>
+			<ul class="comment-c dib">
+				<li class="comment-author"><%= item.userEntity.nickName %></li>
+				<li class="comment-date"><%= item.btime %></li>
+				<li class="comment-summary"><%= item.content %></li>
+			</ul>
+			<div class="comment-good"><i class="icon icon-good"></i><span><%= item.zNum %></span></div>
+		</div>
+		<% }) %>
+	</div>
+<% } %>
+</script>
+<script type="text/tmpl" id="J-favours-tmpl">
+<% if(list.length == 0){ %>
+	<p class="empty">还没有被赞过哦~</p>
+<% }else{ %>
+	<ul class="favours">
+		<% _.forEach(list, function(item){%>
+		<li>
+			<div class="img-square dib" style="background-image: url(<%= item.userEntity.face_url.replace(/_\d+x\d+\.(jpg|png)$/, '_80x.$1') %>);"></div>
+			<div class="favour-author-name dib"><%= item.userEntity.nickName %></div>
+		</li>
+		<% }) %>
+	</ul>
+<% } %>
+</script>
+
+<div id="J-page-container"></div>
+
+	<script src="lib/zepto/zepto.min.js"></script>
+	<script src="lib/underscore/underscore-min.js"></script>
+	<script src="src/detail-movie-comment/index.js"></script>
+</body>
+</html>

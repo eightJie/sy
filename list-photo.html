@@ -2,13 +2,42 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"  />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0"  />
 	<title>剧照列表</title>
+	<link rel="stylesheet" href="lib/swiper/css/swiper.min.css">
 	<link rel="stylesheet" type="text/css" href="src/list-photo/index.css" />
 </head>
 <body>
-	<div></div>
+<script type="text/tmpl" id="J-tmpl-page">
+<div class="wrap">
+<%var sIndex = 0; _.each(movieInfo.photos, function(photo){ %>
+    <% if(sIndex++ % 3 == 0){ %>
+    <ul class="dib-wrap">
+    <% } %>
+        <li class="J-item dib" order="<%= sIndex-1 %>"><a class="img-square" style="background-image: url(<%= photo.replace('.jpg', '_240x.jpg') %>);"></a></li>
+    <% if(sIndex % 3 == 0){ %>
+    </ul>
+    <% } %>
+<% }) %>
+</div>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+    <%var sIndex = 0; _.each(movieInfo.photos, function(photo){ %>
+        <div class="swiper-slide">
+            <div class="img-wrap-table">
+                <div class="img-wrap-cell"><img data-src="<%= photo.replace('.jpg', '_640x.jpg') %>" class="swiper-lazy"></div>
+            </div>
+            <div class="swiper-lazy-preloader"></div>
+        </div>
+    <% }) %>
+    </div>
+</div> 
+</script>
+<div id="J-page-container"></div>
 
-	<script src="src/list-photo/index.js"></script>
+<script src="lib/zepto/zepto.min.js"></script>
+<script src="lib/underscore/underscore-min.js"></script>
+<script src="lib/swiper/js/swiper.jquery.js"></script>
+<script src="src/list-photo/index.js"></script>
 </body>
 </html>

@@ -1,0 +1,63 @@
+@import "../common/header.less";
+
+.wrap{
+	margin: 15px 30/640 * 100%;
+
+	li{
+		width: 180/580 * 100%;
+		margin-right: 20/580 * 100%;
+		margin-bottom: 10px;
+		position: relative;
+
+		&:last-child{
+			margin-right: 0;
+		}
+
+		>a{
+			display: inline-block;
+			width: 100%;
+		}
+
+		>span{
+			color: #fff;
+			font-size: 10px;
+			font-weight: bold;
+			position: absolute;
+			top: 10px;
+			left: 8px;
+			z-index: 2;
+		}
+	}
+}
+
+.swiper-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+
+    background-color: #191919;
+    display:  none;
+
+    .swiper-slide{
+		width: 100%;
+		height: 100%;
+		text-align: center;
+	}
+	.swiper-slide img{
+		max-height: 100%;
+		max-width: 100%;
+	}
+	.img-wrap-table{
+		display: table;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+	.img-wrap-cell{
+		display: table-cell;
+		vertical-align: middle;
+	}
+}

@@ -10,49 +10,53 @@
 <script type="text/tmpl" id="J-tmpl-page">
 	<section class="detail-summary dib-wrap">
 		<div class="summary-photo dib" style="background-image: url(<%= movieInfo.moviePic %>);">
-			<i class="icon icon-play"></i>
-			<p>有<b><%= movieInfo.cNum %></b>影单收录</p>
+			<% if(movieInfo.trailers){ %>
+			<a href="<%= movieInfo.trailers %>"><i class="icon icon-play"></i></a>
+			<% } %>
+			<p style="display:none;">有<b><%= movieInfo.cNum %></b>影单收录</p>
 		</div>
 		<ul class="summary-info dib">
 			<li class="summary-name"><h1><%= movieInfo.name %></h1></li>
 			<li class="dib-wrap">
 				<div class="score-bar dib">
-					<p>7.8分<span>(1575用户)</span></p>
+					<p><%= movieInfo.score||0 %>分<span>(<%= movieInfo.cNum||0 %>用户)</span></p>
 					<div class="bar">
-						<div class="bar-inner" style="width: 80%;"></div>
+						<div class="bar-inner" style="width: <%= (movieInfo.score||0)/10*100 %>%;"></div>
 					</div>
 				</div>
 				<div class="score-bar score-bar-blue dib">
-					<p>7.8分<span>(1575专家)</span></p>
+					<p><%= movieInfo.talentScore||0 %>分<span>(<%= movieInfo.talentCommentNum||0 %>专家)</span></p>
 					<div class="bar">
-						<div class="bar-inner" style="width: 30%;"></div>
+						<div class="bar-inner" style="width: <%= (movieInfo.talentScore||0)/10*100 %>%;"></div>
 					</div>
 				</div>
 			</li>
 			<li><label>导演:</label><span><%= movieInfo.director %></span></li>
-			<li><label>类型:</label><span><%= movieInfo.director %></span></li>
+			<li><label>类型:</label><span><%= movieInfo.tags.join(', ') %></span></li>
 			<li><label class="actors-label">主演:</label><div class="summary-actors"><% _.each(movieInfo.actor, function(name, i){%><span><%= name %><% if(i!=movieInfo.actor.length-1){ %> <i>/</i><% } %></span><% }) %></div></li>
 		</ul>
 	</section>
+	<% if(movieInfo.photos && movieInfo.photos.length>0){ %>
 	<section class="detail-section detail-intro">
 		<header class="dib-wrap">
 			<h2 class="dib">剧照/简介</h2>
 			<span class="dib">共<%= movieInfo.photos && movieInfo.photos.length %>张</span>
-			<a class="dib" href="#">查看全部</a>
+			<a class="dib" href="list-photo.html?id=<%= movieInfo.id %>">查看全部</a>
 		</header>
 		<div class="detail-imgs dib-wrap">
 			<% _.each(movieInfo.photos, function(photo, i){ %>
-			<% if(i < 5){ %>
+			<% if(i < 4){ %>
 			<div class="img-square dib" style="background-image: url(<%= photo %>);"></div>
 			<% }%>
 			<% }) %>
 		</div>
 		<div class="intro-txt">
-			<p>在参加高中好友婚礼时，陈寻（彭于晏 饰）偶然回想起了自己的初恋方茴（倪妮 饰）。他与她在高中校园里相识，体验了人生中第一次的怦然心动，也开始了长达十几年的羁绊。在从高中到大学的青春岁月、从千禧年到非典肆虐的年代记忆中间，他们的情感萌动、升华，最后无奈地结束。</p>
-			<div class="icon-arrow-wrap"><i class="icon icon-arrow"></i></div>
+			<p><%= movieInfo.describe.replace(/<style>.*<\/style>/g, '').replace(/<\/?[^>]*>/g,'') %></p>
+			<div class="J-intro-show icon-arrow-wrap"><i class="icon icon-arrow"></i></div>
 		</div>
 	</section>
-	<section class="detail-section detail-deep">
+	<% } %>
+	<section style="display:none;" class="detail-section detail-deep">
 		<header>
 			<h2>深度解析</h2>
 		</header>
@@ -64,56 +68,55 @@
 			</div>
 		</div>
 	</section>
-	<section class="detail-section detail-section-row detail-comments">
-		<header>
-			<h2>神人点评 ( 50 )</h2>
-		</header>
-		<div class="comments">
-			<div class="comment-item dib-wrap">
-				<div class="comment-img img-square dib" style="background-image: url('imgs/image5.png');"></div>
-				<ul class="comment-c dib">
-					<li class="comment-author">王家收</li>
-					<li class="comment-date">13小时前</li>
-					<li class="comment-summary">张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。</li>
-				</ul>
-				<div class="comment-good"><i class="icon icon-good"></i><span>1234</span></div>
-			</div>
-			<div class="comment-item dib-wrap">
-				<div class="comment-img img-square dib" style="background-image: url('imgs/image5.png');"></div>
-				<ul class="comment-c dib">
-					<li class="comment-author">王家收</li>
-					<li class="comment-date">13小时前</li>
-					<li class="comment-summary">张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。</li>
-				</ul>
-				<div class="comment-good"><i class="icon icon-good"></i><span>1234</span></div>
-			</div>
-		</div>
+	<section id="J-comments-best-container" class="detail-section detail-section-row detail-comments">
 	</section>
-	<section class="detail-section detail-section-row detail-comments">
-		<header>
-			<h2>热门点评 ( 50 )</h2>
-		</header>
-		<div class="comments">
-			<div class="comment-item dib-wrap">
-				<div class="comment-img img-square dib" style="background-image: url('imgs/image5.png');"></div>
-				<ul class="comment-c dib">
-					<li class="comment-author">王家收</li>
-					<li class="comment-date">13小时前</li>
-					<li class="comment-summary">张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。</li>
-				</ul>
-				<div class="comment-good"><i class="icon icon-good"></i><span>1234</span></div>
-			</div>
-			<div class="comment-item dib-wrap">
-				<div class="comment-img img-square dib" style="background-image: url('imgs/image5.png');"></div>
-				<ul class="comment-c dib">
-					<li class="comment-author">王家收</li>
-					<li class="comment-date">13小时前</li>
-					<li class="comment-summary">张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。</li>
-				</ul>
-				<div class="comment-good"><i class="icon icon-good"></i><span>1234</span></div>
-			</div>
-		</div>
+	<section id="J-comments-container" class="detail-section detail-section-row detail-comments">
 	</section>
+</script>
+
+<script type="text/tmpl" id="J-comments-tmpl">
+<% if(list.length > 0){ %>
+	<header>
+		<h2>热门点评 ( <%= list.length %> )</h2>
+	</header>
+	<div class="comments">
+		<% _.each(list, function(comment, i){ %>
+		<a href="detail-movie-comment.html?id=<%= comment.mvCommentIdStr || comment.mvCommentId %>">
+			<div class="comment-item dib-wrap">
+				<div class="comment-img img-square dib" style="background-image: url(<%= comment.userEntity.face_url.replace(/_\d+x\d+\.(jpg|png)$/, '_80x.$1') %>);"></div>
+				<ul class="comment-c dib">
+					<li class="comment-author"><%= comment.userEntity.nickName %></li>
+					<li class="comment-date"><%= comment.btime %></li>
+					<li class="comment-summary"><%= comment.contList[0].content %></li>
+				</ul>
+				<div class="comment-good"><i class="icon icon-good"></i><span><%= comment.zNum %></span></div>
+			</div>
+		</a>
+		<% }) %>
+	</div>
+<% } %>
+</script>
+<script type="text/tmpl" id="J-comments-best-tmpl">
+<% if(list.length > 0){ %>
+	<header>
+		<h2>神人点评 ( <%= list.length %> )</h2>
+	</header>
+	<div class="comments">
+		<% _.each(list, function(comment, i){ %>
+		<a href="detail-movie-comment.html?id=<%= comment.mvCommentIdStr || comment.mvCommentId %>">
+			<div class="comment-item dib-wrap">
+				<div class="comment-img img-square dib" style="background-image: url('imgs/image5.png');"></div>
+				<ul class="comment-c dib">
+					<li class="comment-author"><%= comment.userEntity.nickName %></li>
+					<li class="comment-date"><%= comment.btime %></li>
+					<li class="comment-summary"><%= comment.contList[0].content %></li>
+				</ul>
+				<div class="comment-good"><i class="icon icon-good"></i><span><%= comment.zNum %></span></div>
+			</div>
+		</a>
+		<% }) %>
+	</div>
+<% } %>
 </script>
 
 <div id="J-page-container"></div>

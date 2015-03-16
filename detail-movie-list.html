@@ -10,12 +10,12 @@
 <script type="text/tmpl" id="J-tmpl-page">
 	<section class="book-summary">
 		<div class="summary-info clearfix">
-			<div class="summary-img img-rect dib" style="background-image: url(<%= movieListInfo.fristBookPicUrl %>);"></div>
+			<div class="summary-img img-rect dib" style="background-image: url(<%= movieListInfo.firstMoviePic %>);"></div>
 			<div class="summary-r">
 				<div class="summary-name"><%= movieListInfo.name %></div>
 				<div class="summary-author dib-wrap">
 					<span class="author-name dib"><%= movieListInfo['userEntity']['nickName'] %></span>
-					<span class="author-photo img-circle dib" style="background-image: url(<%=movieListInfo['userEntity']['face_url'] %>);"></span>
+					<span class="author-photo img-circle dib" style="background-image: url(<%=movieListInfo['userEntity']['face_url'].replace(/_\d+x\d+\.(jpg|png)$/, '_80x.$1') %>);"></span>
 				</div>
 				<div class="summary-tags">
 					<% _.each(movieListInfo.tags, function(tag){%>
@@ -34,22 +34,30 @@
 			<% _.each(list, function(item){ %>
 			<div class="book-item">
 				<div class="book-t dib-wrap">
-					<div class="book-img img-rect dib" style="background-image: url(<%= item.bookInfo.pagePic %>);"></div>
-					<ul class="book-r dib">
-						<li class="book-name"><%= item.bookInfo.name %></li>
-						<li class="book-author"><%= item.bookInfo.authorName %></li>
-						<li>
-							<div class="score-star dib-wrap">
-								<div class="star-bar dib">
-									<i></i><i></i><i></i><i></i><i class="last"></i>
-									<div class="star-bar-inner" style="width: <%= item.bookInfo.score/10 * 100 %>%;"><i></i><i></i><i></i><i></i><i class="last"></i></div>
+					<a href="detail-movie.html?id=<%= item.movieInfo.idStr || item.movieInfo.id %>" class="book-img img-rect dib" style="background-image: url(<%= item.movieInfo.moviePic %>);"></a>
+					<% if(item.contList[0] && item.contList[0].content){ %>
+					<a href="detail-movie-comment.html?id=<%= item.mvCommentIdStr || item.mvCommentId %>">
+					<% }else{ %>
+					<a href="detail-movie.html?id=<%= item.movieInfo.idStr || item.movieInfo.id %>">
+					<% } %>
+						<ul class="book-r dib">
+							<li class="book-name"><%= item.movieInfo.name %></li>
+							<li class="book-author"><%= item.movieInfo.director.join(', ') %></li>
+							<li>
+								<div class="score-star dib-wrap">
+									<div class="star-bar dib">
+										<i></i><i></i><i></i><i></i><i class="last"></i>
+										<div class="star-bar-inner" style="width: <%= item.movieInfo.score/10 * 100 %>%;"><i></i><i></i><i></i><i></i><i class="last"></i></div>
+									</div>
+									<em class="dib"><%= item.movieInfo.score %>分</em>
 								</div>
-								<em class="dib"><%= item.bookInfo.score %>分</em>
-							</div>
-						</li>
-					</ul>
+							</li>
+						</ul>
+					</a>
 				</div>
-				<p class="book-des"><%= item.contList[0].content %></p>
+				<a href="detail-movie-comment.html?id=<%= item.mvCommentIdStr || item.mvCommentId %>">
+					<p class="book-des"><%= item.contList && item.contList[0] && item.contList[0].content %></p>
+				</a>
 			</div>
 			<% }) %>
 		</div>

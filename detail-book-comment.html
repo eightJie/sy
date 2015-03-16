@@ -7,71 +7,51 @@
 	<link rel="stylesheet" type="text/css" href="src/detail-book-comment/index.css" />
 </head>
 <body>
+<script type="text/tmpl" id="J-tmpl-page">
 	<section class="comment-main">
 		<div class="comment-info dib-wrap">
-			<div class="comment-photo img-square dib" style="background-image: url(imgs/image3.png);"></div>
+			<div class="comment-photo img-square dib" style="background-image: url(<%= resourceInfo.userEntity.face_url.replace(/_\d+x\d+\.(jpg|png)$/, '_80x.$1') %>);"></div>
 			<div class="comment-r dib">
-				<span class="comment-author">尹楠</span>
-				<span class="comment-date"><i class="icon icon-time"></i>5小时前</span>
+				<span class="comment-author"><%= resourceInfo.userEntity.nickName %></span>
+				<span class="comment-date"><i class="icon icon-time"></i><%= resourceInfo.btime %></span>
 			</div>
 		</div>
 		<div class="comment-content">
-			<p>萧秋水被誉为“行动派”，她信奉积极的价值标_准和dream深度的思维，在书里谈happy到了离开大学之后，ABCDEFG怎样进行，怎么认识1234567890自己，怎么把 自己塑造HIJK成自己想要的那个人。</p>
-			<p>一个人永LMN远躲在自己内心的人，是无法成OPQRST熟的，生活UVW的历练是成？为个完XYZ整的《人》的最好良药。
-就如泰戈尔说的：“我们热爱这个世界时，才真正活在这个世界上” “我们辨识错了世界，却说世界欺骗了我们”。</p>
+			<%= resourceInfo.contList[0] && resourceInfo.contList[0].content %>
 		</div>
-		<div class="book-info dib-wrap">
-			<div class="book-img img-rect dib" style="background-image: url('imgs/image7.png');"></div>
-			<ul class="book-r dib">
-				<li class="book-name">这一生，静待时光检验</li>
-				<li class="book-author"><em>萧秋水</em>著</li>
-				<li>
-					<div class="score-star dib-wrap">
-						<div class="star-bar dib">
-							<i></i><i></i><i></i><i></i><i class="last"></i>
-							<div class="star-bar-inner"><i></i><i></i><i></i><i></i><i class="last"></i></div>
+		<a href="detail-book.html?id=<%= resourceInfo.bookInfo.idStr || resourceInfo.bookInfo.id %>">
+			<div class="book-info dib-wrap">
+				<div class="book-img img-rect dib" style="background-image: url(<%= resourceInfo.bookInfo.pagePic %>);"></div>
+				<ul class="book-r dib">
+					<li class="book-name"><%= resourceInfo.bookInfo.name %></li>
+					<li class="book-author">作者:<em><%= resourceInfo.bookInfo.authorName %></em></li>
+					<li>
+						<div class="score-star dib-wrap">
+							<div class="star-bar dib">
+								<i></i><i></i><i></i><i></i><i class="last"></i>
+								<div class="star-bar-inner" style="width: <%= resourceInfo.bookInfo.score/10*100 %>%;"><i></i><i></i><i></i><i></i><i class="last"></i></div>
+							</div>
+							<em class="dib"><%= resourceInfo.bookInfo.score %>分</em>
 						</div>
-						<em class="dib">9.2分</em>
-					</div>
-				</li>
-			</ul>
-			<em class="icon-corner"></em>
-		</div>
+					</li>
+				</ul>
+				<em class="icon-corner"></em>
+			</div>
+		</a>
 	</section>
 
 	<section class="comment-other">
-		<ul class="tab-nav clearfix">
-			<li class="nav-1 active"<a href="javascript:void(0);">评论 50</a><i class="icon-nav-arrow"></i></li>
-			<li class="nav-3"><a href="javascript:void(0);">打赏 12</a><i class="icon-nav-arrow"></i></li>
-			<li class="nav-2"><a href="javascript:void(0);">赞 22</a><i class="icon-nav-arrow"></i></li>
+		<ul id="J-tab-nav" class="tab-nav clearfix">
+			<li id="nav-1" class="nav-1 active"><a href="javascript:void(0);">评论 <span id="J-comments-num"></span></a><i class="icon-nav-arrow"></i></li>
+			<!--<li id="nav-3" class="nav-3"><a href="javascript:void(0);">打赏 12</a><i class="icon-nav-arrow"></i></li>-->
+			<li id="nav-2" class="nav-2"><a href="javascript:void(0);">赞 <span id="J-favours-num"></span></a><i class="icon-nav-arrow"></i></li>
 		</ul>
-		<div class="tab-content">
-			<div class="tab-content-1">
-				<div class="detail-comments">
-					<div class="comment-item dib-wrap">
-						<div class="comment-img img-square dib" style="background-image: url('imgs/image5.png');"></div>
-						<ul class="comment-c dib">
-							<li class="comment-author">王家收</li>
-							<li class="comment-date">13小时前</li>
-							<li class="comment-summary">张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。</li>
-						</ul>
-						<div class="comment-good"><i class="icon icon-good"></i><span>1234</span></div>
-					</div>
-					<div class="comment-item dib-wrap">
-						<div class="comment-img img-square dib" style="background-image: url('imgs/image5.png');"></div>
-						<ul class="comment-c dib">
-							<li class="comment-author">王家收</li>
-							<li class="comment-date">13小时前</li>
-							<li class="comment-summary">张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。张国荣我想他是唯一，也是不能取代的，他是一个非常特别的人。</li>
-						</ul>
-						<div class="comment-good"><i class="icon icon-good"></i><span>1234</span></div>
-					</div>
-				</div>
+		<div id="J-tab-content" class="tab-content">
+			<div id="tab-content-1" style="display:block;">
 			</div>
-			<div class="tab-content-2">
-				bbb
+			<div id="tab-content-2">
 			</div>
-			<div class="tab-content-3" style="display:block;">
+			<div id="tab-content-3">
 				<div class="awards">
 					<div class="award-item dib-wrap">
 						<div class="award-photo img-square dib" style="background-image: url('imgs/image3.png');"></div>
@@ -101,7 +81,46 @@
 			</div>
 		</div>
 	</section>
+</script>
+<script type="text/tmpl" id="J-comments-tmpl">
+<% if(list.length == 0){ %>
+	<p class="empty">还没有评论数据哦~</p>
+<% }else{ %>
+	<div class="detail-comments">
 
+		<% _.forEach(list, function(item){%>
+		<div class="comment-item dib-wrap">
+			<div class="comment-img img-square dib" style="background-image: url(<%= item.userEntity.face_url.replace(/_\d+x\d+\.(jpg|png)$/, '_80x.$1') %>);"></div>
+			<ul class="comment-c dib">
+				<li class="comment-author"><%= item.userEntity.nickName %></li>
+				<li class="comment-date"><%= item.btime %></li>
+				<li class="comment-summary"><%= item.content %></li>
+			</ul>
+			<div class="comment-good"><i class="icon icon-good"></i><span><%= item.zNum %></span></div>
+		</div>
+		<% }) %>
+	</div>
+<% } %>
+</script>
+<script type="text/tmpl" id="J-favours-tmpl">
+<% if(list.length == 0){ %>
+	<p class="empty">还没有被赞过哦~</p>
+<% }else{ %>
+	<ul class="favours">
+		<% _.forEach(list, function(item){%>
+		<li>
+			<div class="img-square dib" style="background-image: url(<%= item.userEntity.face_url.replace(/_\d+x\d+\.(jpg|png)$/, '_80x.$1') %>);"></div>
+			<div class="favour-author-name dib"><%= item.userEntity.nickName %></div>
+		</li>
+		<% }) %>
+	</ul>
+<% } %>
+</script>
+
+<div id="J-page-container"></div>
+
+	<script src="lib/zepto/zepto.min.js"></script>
+	<script src="lib/underscore/underscore-min.js"></script>
 	<script src="src/detail-book-comment/index.js"></script>
 </body>
 </html>

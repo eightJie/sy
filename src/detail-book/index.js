@@ -131,10 +131,11 @@ $(function() {
 		_scroll: function() {
 			var ths = this;
 			var scrollY = win.scrollY,
-				dir,
-				containerY = ths.container.offset().top,
-				containerH = ths.container.height(),
-				containerShowH = scrollY + winH - containerY;
+				dir;
+			// var containerY = ths.container.offset().top,
+			// 	containerH = ths.container.height(),
+			// 	containerShowH = scrollY + winH - containerY;
+			var isBottom = scrollY >= $(document).height() - winH;
 
 			if (scrollY > lastScrollY) {
 				dir = 'up';
@@ -143,14 +144,15 @@ $(function() {
 			}
 			lastScrollY = scrollY;
 
-			if (!ths.loading && dir == 'up' && containerShowH > 0 && containerShowH / containerH > 0.8) {
+			// if (!ths.loading && dir == 'up' && containerShowH > 0 && containerShowH / containerH > 0.8) {
+			if (!ths.loading && dir == 'up' && isBottom) {
 				ths._getData();
 			}
 		},
 		_getData: function() {
 			var ths = this;
 			var pageNum = ths.pageNum;
-			var lastId =  0;
+			var lastId = ths.lastId || 0;
 
 			if (ths.loading) {
 				return false;

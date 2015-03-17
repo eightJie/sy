@@ -1,8 +1,9 @@
 $(function() {
 	var search = location.search;
-	var id;
+	var id, type;
 
 	id = getParam('id', search);
+	type = getParam('type', search);
 
 	init();
 
@@ -30,6 +31,9 @@ $(function() {
 		$.ajax({
 			url: getUrl('/w/view_onebook.do'),
 			dataType: 'jsonp',
+			data: {
+				type: type
+			},
 			success: function(result) {
 				var data = result.res.data;
 				var tpl = _.template($('#J-tmpl-page').html());

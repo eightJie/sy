@@ -7,6 +7,8 @@ $(function() {
 	init();
 
 	function init() {
+		exportData();
+
 		initPage(function() {
 
 			initSwiper();
@@ -31,7 +33,7 @@ $(function() {
 		$.ajax({
 			url: HOST + '/w/view_oneresourcecomment.do',
 			dataType: 'jsonp',
-			data:{
+			data: {
 				id: id,
 				type: 3
 			},
@@ -44,6 +46,25 @@ $(function() {
 			},
 			error: function() {}
 		});
+	}
+
+	function exportData() {
+		window.getText = function(item) {
+			var content = item.content;
+			var oList = item.oList;
+
+			if (!content || content.indexOf('http://') > -1) {
+				return '';
+			}
+			if (!oList) {
+				return content;
+			}
+			_.each(oList, function(o) {
+				var href = (o.type == 6 ? 'detail-book.html' : 'detail-movie.html') + '?id=' + o.id;
+				content = content.replace(new RegExp('(《?' + o.name + '》?)'), '<a style="color: #28a5dc;" href="' + href + '">$1</a>')
+			});
+			return content;
+		};
 	}
 
 	function initComments() {
@@ -94,6 +115,10 @@ $(function() {
 
 		$imgs.delegate('.J-item', 'tap', show);
 
+		function resetNum(mySwiper){
+			$('#swiper-num').html('<i>' + (mySwiper.activeIndex + 1) + '</i><i>/</i><i>' + mySwiper.slides.length + '</i>');
+		}
+
 		function show() {
 			var i = +$(this).attr('order');
 
@@ -102,10 +127,14 @@ $(function() {
 
 			mySwiper = new Swiper('.swiper-container', {
 				lazyLoading: true,
-				loop: false
+				loop: false,
+				onSlideChangeEnd: function() {
+					resetNum(mySwiper);
+				}
 			});
 			mySwiper.activeIndex = i;
 			mySwiper.onResize();
+			resetNum(mySwiper);
 
 			$layer.on('touchstart', function(evt) {
 				var pageX = evt.changedTouches[0].pageX;

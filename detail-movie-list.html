@@ -18,8 +18,10 @@
 					<span class="author-photo img-circle dib" style="background-image: url(<%=movieListInfo['userEntity']['face_url'].replace(/(_\d+x\d+)?\.(jpg|png)$/, '_80x.$2') %>);"></span>
 				</div>
 				<div class="summary-tags">
-					<% _.each(movieListInfo.tags, function(tag){%>
-					<span><%= tag %></span>
+					<% _.each(movieListInfo.tags, function(tag, i){%>
+						<% if(i < 2){ %>
+						<span><%= tag %></span>
+						<% } %>
 					<% }) %>
 				</div>
 			</div>

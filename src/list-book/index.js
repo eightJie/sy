@@ -43,6 +43,10 @@ $(function() {
 
 		$imgs.delegate('.J-item', 'tap', show);
 
+		function resetNum(mySwiper){
+			$('#swiper-num').html('<i>' + (mySwiper.activeIndex + 1) + '</i><i>/</i><i>' + mySwiper.slides.length + '</i>');
+		}
+
 		function show() {
 			var i = +$(this).attr('order');
 
@@ -51,10 +55,14 @@ $(function() {
 
 			mySwiper = new Swiper('.swiper-container', {
 				lazyLoading: true,
-				loop: false
+				loop: false,
+				onSlideChangeEnd: function() {
+					resetNum(mySwiper);
+				}
 			});
 			mySwiper.activeIndex = i;
 			mySwiper.onResize();
+			resetNum(mySwiper);
 
 			$layer.on('touchstart', function(evt) {
 				var pageX = evt.changedTouches[0].pageX;

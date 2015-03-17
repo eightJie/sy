@@ -7,15 +7,20 @@
 (function(win) {
 
 	function showImg(url, size) {
+		return ' style="background-image:url(' + getImg(url, size) + ');" ';
+	}
+
+	function getImg(url, size) {
 		url = url || 'imgs/default.png';
 
-		if(size && /^http:\/\/.*\.duyao.*\.com/.test(url)){
-
+		if (url && size && /^http:\/\/.*\.duyao.*\.com/.test(url)) {
+			url = url.replace(/(_\d+x\d+)?\.(jpg|png)$/, '_' + size + '.$2');
 		}
-		return ' style="background-image:url(' + url + ');" ';
+		return url;
 	}
 
 	win.u = {
+		getImg: getImg,
 		showImg: showImg
 	};
 	win.HOST = 'http://m.duyao001.com';

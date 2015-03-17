@@ -1,3 +1,63 @@
 @import "reset.less";
 @import "func.less";
 @import "component.less";
+
+.download{
+	color: #fff;
+	padding: 8px 30/640 * 100%;
+	position: relative;
+
+	.mask{
+		background-color: #000;
+		opacity: .8;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+	}
+	.logo-wrap{
+		position: relative;
+		z-index: 2;
+	}
+	.logo{
+		.bg-contain();
+		background-image: url(../../imgs/logo.png);
+		width: 34px;
+		height: 34px;
+		float: left;
+		margin-right: 12px;
+	}
+	.des{
+		float: left;
+		>h1{
+			.bg-contain();
+			background-image: url(../../imgs/logo-name.png);
+			width: 44px;
+			height: 20px;
+			margin-bottom: 4px;
+		}
+		>p{
+			font-size: 10px;
+		}
+	}
+	.go{
+		border: 1px solid #fff;
+		-webkit-border-radius: 5px;
+  		border-radius: 5px;
+		color: #fff;
+		line-height: 34px;
+		padding: 0 17px;
+		font-size: 12px;
+		float: right;
+
+	}
+
+	&.download-layer{
+		position: fixed;
+		width: 100%;
+		z-index: 5000;
+		bottom: 0;
+	}
+}

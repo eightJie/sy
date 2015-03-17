@@ -10,7 +10,7 @@
 <script type="text/tmpl" id="J-tmpl-page">
 	<section class="comment-main">
 		<div class="comment-info dib-wrap">
-			<div class="comment-photo img-square dib" style="background-image: url(<%= resourceInfo.userEntity.face_url.replace(/(_\d+x\d+)?\.(jpg|png)$/, '_80x.$2') %>);"></div>
+			<div class="comment-photo img-square dib" <%= u.showImg(resourceInfo.userEntity.face_url, '80x') %> ></div>
 			<div class="comment-r dib">
 				<span class="comment-author"><%= resourceInfo.userEntity.nickName %></span>
 				<span class="comment-date"><i class="icon icon-time"></i><%= resourceInfo.btime %></span>
@@ -21,7 +21,7 @@
 		</div>
 		<a href="detail-movie.html?id=<%= resourceInfo.movieInfo.idStr || resourceInfo.movieInfo.id %>">
 			<div class="book-info dib-wrap">
-				<div class="book-img img-rect dib" style="background-image: url(<%= resourceInfo.movieInfo.moviePic %>);"></div>
+				<div class="book-img img-rect dib" <%= u.showImg(resourceInfo.movieInfo.moviePic) %> ></div>
 				<ul class="book-r dib">
 					<li class="book-name"><%= resourceInfo.movieInfo.name %></li>
 					<li class="book-author">导演:<em><%= resourceInfo.movieInfo.director %></em></li>
@@ -65,18 +65,6 @@
 							<li class="award-comment">留言: 写得真是太好了，我怎么就写不出来这种感受呢写得真是太好了，我怎么就写不出来这种感受呢写得真是太好了，我怎么就写不出来这种感受呢写得真是太好了，我怎么就写不出来这种感受呢</li>
 						</ul>
 					</div>
-					<div class="award-item dib-wrap">
-						<div class="award-photo img-square dib" style="background-image: url('imgs/image3.png');"></div>
-						<ul class="award-r dib">
-							<li class="dib-warp">
-								<span class="award-author dib">林夕大魔王</span>
-								<span class="award-money dib">
-									赏了<b>&yen;12.09</b>元
-								</span>
-							</li>
-							<li class="award-comment">留言: 写得真是太好了，我怎么就写不出来这种感受呢写得真是太好了，我怎么就写不出来这种感受呢写得真是太好了，我怎么就写不出来这种感受呢写得真是太好了，我怎么就写不出来这种感受呢</li>
-						</ul>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -89,7 +77,7 @@
 	<div class="detail-comments">
 		<% _.forEach(list, function(item){%>
 		<div class="comment-item dib-wrap">
-			<div class="comment-img img-square dib" style="background-image: url(<%= item.userEntity.face_url.replace(/(_\d+x\d+)?\.(jpg|png)$/, '_80x.$2') %>);"></div>
+			<div class="comment-img img-square dib" <%= u.showImg(item.userEntity.face_url, '80x') %> ></div>
 			<ul class="comment-c dib">
 				<li class="comment-author"><%= item.userEntity.nickName %></li>
 				<li class="comment-date"><%= item.btime %></li>
@@ -108,7 +96,7 @@
 	<ul class="favours">
 		<% _.forEach(list, function(item){%>
 		<li>
-			<div class="img-square dib" style="background-image: url(<%= item.userEntity.face_url.replace(/(_\d+x\d+)?\.(jpg|png)$/, '_80x.$2') %>);"></div>
+			<div class="img-square dib" <%= u.showImg(item.userEntity.face_url, '80x') %> ></div>
 			<div class="favour-author-name dib"><%= item.userEntity.nickName %></div>
 		</li>
 		<% }) %>

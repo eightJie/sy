@@ -1,5 +1,4 @@
 $(function() {
-	var HOST = 'http://pre.duyao001.com';
 
 	$.ajax({
 		url: getUrl('/w/view_onemovielist.do'),

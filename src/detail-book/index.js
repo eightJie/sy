@@ -1,5 +1,4 @@
 $(function() {
-	var HOST = 'http://pre.duyao001.com';
 	var search = location.search;
 	var id;
 
@@ -19,7 +18,11 @@ $(function() {
 
 	function exportData() {
 		window.d = {
-			id: id
+			id: id,
+			showImg: function(url) {
+				url = url || 'imgs/default.png';
+				return ' style="background-image:url(' + url + ');" ';
+			}
 		};
 	}
 

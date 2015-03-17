@@ -3,6 +3,37 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    copy: {
+      main: {
+        files: [
+          //imgs
+          {
+            expand: true,
+            src: ['imgs/*'],
+            dest: 'build/'
+          },
+          // lib
+          {
+            expand: true,
+            src: ['lib/**'],
+            dest: 'build/'
+          },
+          //css js
+          {
+            expand: true,
+            src: ['src/**/*.js', 'src/**/*.css'],
+            dest: 'build/'
+          },
+          // html
+          {
+            expand: true,
+            src: ['./*.html'],
+            dest: 'build/'
+          },
+        ]
+      }
+    },
+
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
@@ -15,47 +46,13 @@ module.exports = function(grunt) {
       my_target: {
         files: [{
           expand: true,
-          cwd: 'src/',
+          cwd: 'build/src',
           src: '**/*.js',
-          dest: 'build'
+          dest: 'build/src'
         }]
       }
-    },
-    copy: {
-      main: {
-        files: [
-          // includes files within path 
-          {
-            expand: true,
-            src: ['imgs/*'],
-            dest: 'build/'
-          },
-
-          // includes files within path and its sub-directories 
-          {
-            expand: true,
-            src: ['./*.html'],
-            dest: 'build/'
-          },
-
-          // makes all src relative to cwd 
-          {
-            expand: true,
-            src: ['lib/**'],
-            dest: 'build/'
-          },
-
-          // flattens results to a single level 
-          {
-            expand: true,
-            flatten: true,
-            src: ['path/**'],
-            dest: 'dest/',
-            filter: 'isFile'
-          }
-        ]
-      }
     }
+    
   });
 
   // 加载任务插件。
@@ -63,6 +60,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   // 默认被执行的任务列表。
-  grunt.registerTask('default', ['uglify', 'copy']);
+  grunt.registerTask('default', ['copy', 'uglify']);
 
 };

@@ -1,0 +1,2 @@
+/*! sy 2015-03-17 */
+$(function(){function a(a){return HOST+a+location.search}$.ajax({url:a("/w/view_onemovielist.do"),dataType:"jsonp",success:function(a){var b=a.res.data,c=_.template($("#J-tmpl-page").html());$("#J-page-container").html(c(b))},error:function(){}})});

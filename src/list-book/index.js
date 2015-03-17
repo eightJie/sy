@@ -1,5 +1,4 @@
 $(function() {
-	var HOST = 'http://pre.duyao001.com';
 
 	init();
 

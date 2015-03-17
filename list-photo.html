@@ -14,7 +14,7 @@
     <% if(sIndex++ % 3 == 0){ %>
     <ul class="dib-wrap">
     <% } %>
-        <li class="J-item dib" order="<%= sIndex-1 %>"><a class="img-square" style="background-image: url(<%= photo.replace('.jpg', '_240x.jpg') %>);"></a></li>
+        <li class="J-item dib" order="<%= sIndex-1 %>"><a class="img-square"  <%= u.showImg(photo, '240x', true) %> ></a></li>
     <% if(sIndex % 3 == 0){ %>
     </ul>
     <% } %>
@@ -25,7 +25,7 @@
     <%var sIndex = 0; _.each(movieInfo.photos, function(photo){ %>
         <div class="swiper-slide">
             <div class="img-wrap-table">
-                <div class="img-wrap-cell"><img data-src="<%= photo.replace('.jpg', '_640x.jpg') %>" class="swiper-lazy"></div>
+                <div class="img-wrap-cell"><img data-src="<%= u.getImg(photo, '640x', true) %>" class="swiper-lazy"></div>
             </div>
             <div class="swiper-lazy-preloader"></div>
         </div>

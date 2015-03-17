@@ -10,12 +10,12 @@
 <script type="text/tmpl" id="J-tmpl-page">
 	<section class="book-summary">
 		<div class="summary-info clearfix">
-			<div class="summary-img img-rect dib" style="background-image: url(<%= movieListInfo.firstMoviePic %>);"></div>
+			<div class="summary-img img-rect dib" <%= u.showImg(movieListInfo.firstMoviePic) %> ></div>
 			<div class="summary-r">
 				<div class="summary-name"><%= movieListInfo.name %></div>
 				<div class="summary-author dib-wrap">
 					<span class="author-name dib"><%= movieListInfo['userEntity']['nickName'] %></span>
-					<span class="author-photo img-circle dib" style="background-image: url(<%=movieListInfo['userEntity']['face_url'].replace(/(_\d+x\d+)?\.(jpg|png)$/, '_80x.$2') %>);"></span>
+					<span class="author-photo img-circle dib" <%= u.showImg(movieListInfo['userEntity']['face_url'], '80x') %>></span>
 				</div>
 				<div class="summary-tags">
 					<% _.each(movieListInfo.tags, function(tag, i){%>
@@ -36,7 +36,7 @@
 			<% _.each(list, function(item){ %>
 			<div class="book-item">
 				<div class="book-t dib-wrap">
-					<a href="detail-movie.html?id=<%= item.movieInfo.idStr || item.movieInfo.id %>" class="book-img img-rect dib" style="background-image: url(<%= item.movieInfo.moviePic %>);"></a>
+					<a href="detail-movie.html?id=<%= item.movieInfo.idStr || item.movieInfo.id %>" class="book-img img-rect dib" <%= u.showImg(item.movieInfo.moviePic) %> ></a>
 					<% if(item.contList[0] && item.contList[0].content){ %>
 					<a href="detail-movie-comment.html?id=<%= item.mvCommentIdStr || item.mvCommentId %>">
 					<% }else{ %>

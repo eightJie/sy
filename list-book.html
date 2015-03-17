@@ -15,7 +15,7 @@
         <% if(sIndex++ % 3 == 0){ %>
         <ul class="dib-wrap">
         <% } %>
-            <li class="J-item dib" order="<%= sIndex-1 %>"><a class="img-square" style="background-image: url(<%= talk.list[0] && talk.list[0].content.replace('.jpg', '_240x.jpg') %>);"></a><span>P.<%= sIndex %></span></li>
+            <li class="J-item dib" order="<%= sIndex-1 %>"><a class="img-square" <%= u.showImg(talk.list[0] && talk.list[0].content, '240x', true) %> ></a><span>P.<%= sIndex %></span></li>
         <% if(sIndex % 3 == 0){ %>
         </ul>
         <% } %>
@@ -28,7 +28,7 @@
         <% _.each(item.bookTalk, function(talk){%>
             <div class="swiper-slide">
                 <div class="img-wrap-table">
-                    <div class="img-wrap-cell"><img data-src="<%= talk.list[0] && talk.list[0].content.replace('.jpg', '_640x.jpg') %>" class="swiper-lazy"></div>
+                    <div class="img-wrap-cell"><img data-src="<%= u.getImg(talk.list[0] && talk.list[0].content, '640x', true) %>" class="swiper-lazy"></div>
                 </div>
                 <div class="swiper-lazy-preloader"></div>
             </div>

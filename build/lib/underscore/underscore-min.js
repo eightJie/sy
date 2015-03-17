@@ -6,8 +6,12 @@
 
 (function(win) {
 
-	function showImg(url) {
+	function showImg(url, size) {
 		url = url || 'imgs/default.png';
+
+		if(size && /^http:\/\/.*\.duyao.*\.com/.test(url)){
+
+		}
 		return ' style="background-image:url(' + url + ');" ';
 	}
 

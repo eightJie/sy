@@ -36,20 +36,22 @@
 			<li><label class="actors-label">主演:</label><div class="summary-actors"><% _.each(movieInfo.actor, function(name, i){%><span><%= name %><% if(i!=movieInfo.actor.length-1){ %> <i>/</i><% } %></span><% }) %></div></li>
 		</ul>
 	</section>
-	<% if(movieInfo.photos && movieInfo.photos.length>0){ %>
+	<% if(movieInfo.describe){ %>
 	<section class="detail-section detail-intro">
 		<header class="dib-wrap">
 			<h2 class="dib">剧照/简介</h2>
-			<span class="dib">共<%= movieInfo.photos && movieInfo.photos.length %>张</span>
-			<a class="dib" href="list-photo.html?id=<%= movieInfo.id %>">查看全部</a>
+			<span style="display:none;" class="dib">共<%= movieInfo.photos && movieInfo.photos.length %>张</span>
+			<a style="display:none;" class="dib" href="list-photo.html?id=<%= movieInfo.id %>">查看全部</a>
 		</header>
-		<div class="detail-imgs dib-wrap">
+		<% if(movieInfo.photos && movieInfo.photos.length>0){ %>
+		<div style="display:none;" class="detail-imgs dib-wrap">
 			<% _.each(movieInfo.photos, function(photo, i){ %>
 			<% if(i < 4){ %>
 			<div class="img-square dib" style="background-image: url(<%= photo %>);"></div>
 			<% }%>
 			<% }) %>
 		</div>
+		<% } %>
 		<% if(movieInfo.describe){ %>
 		<div class="intro-txt">
 			<p><%= movieInfo.describe.replace(/<style>.*<\/style>/g, '').replace(/<\/?[^>]*>/g,'') %></p>

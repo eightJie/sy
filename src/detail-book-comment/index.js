@@ -51,7 +51,7 @@ $(function() {
 			dataType: 'jsonp',
 			data: {
 				id: id,
-				type: 0,
+				type: 1,
 				lastId: 0
 			},
 			success: function(result) {
@@ -71,7 +71,7 @@ $(function() {
 			dataType: 'jsonp',
 			data: {
 				id: id,
-				type: 1,
+				type: 2,
 				lastId: 0
 			},
 			success: function(result) {

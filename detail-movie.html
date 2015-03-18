@@ -9,7 +9,7 @@
 <body>
 <script type="text/tmpl" id="J-tmpl-page">
 	<section class="detail-summary dib-wrap">
-		<div class="summary-photo img-rect dib" style="background-image: url(<%= movieInfo.moviePic %>);">
+		<div class="summary-photo img-rect dib" <%= u.showImg(movieInfo.moviePic, '320x') %>>
 			<% if(movieInfo.trailers && movieInfo.trailers[0]){ %>
 			<a href="<%= movieInfo.trailers[0]['trailerVideoUrl'] %>"><i class="icon icon-play"></i></a>
 			<% } %>
@@ -47,14 +47,14 @@
 		<div style="display:none;" class="detail-imgs dib-wrap">
 			<% _.each(movieInfo.photos, function(photo, i){ %>
 			<% if(i < 4){ %>
-			<div class="img-square dib" style="background-image: url(<%= photo %>);"></div>
+			<div class="img-square dib" <%= u.showImg(photo, '240x') %> ></div>
 			<% }%>
 			<% }) %>
 		</div>
 		<% } %>
 		<% if(movieInfo.describe){ %>
 		<div class="intro-txt">
-			<p><%= movieInfo.describe.replace(/<style>.*<\/style>/g, '').replace(/<\/?[^>]*>/g,'') %></p>
+			<div class="intro-t"><%= movieInfo.describe.replace(/^<style>.*<\/style>/, '') %></div>
 			<div class="J-intro-show icon-arrow-wrap"><i class="icon icon-arrow"></i></div>
 		</div>
 		<% } %>
@@ -85,8 +85,8 @@
 	</header>
 	<div class="comments">
 		<% _.each(list, function(comment, i){ %>
-		<a href="detail-movie-comment.html?id=<%= comment.mvCommentIdStr || comment.mvCommentId %>">
-			<div class="comment-item dib-wrap">
+		<div class="comment-item dib-wrap">
+			<a href="detail-movie-comment.html?id=<%= comment.mvCommentIdStr || comment.mvCommentId %>">
 				<div class="comment-img img-square dib" <%= u.showImg(comment.userEntity.face_url, '80x') %>></div>
 				<ul class="comment-c dib">
 					<li class="comment-author"><%= comment.userEntity.nickName %></li>
@@ -94,8 +94,8 @@
 					<li class="comment-summary"><%= comment.contList[0].content %></li>
 				</ul>
 				<div class="comment-good"><i class="icon icon-good"></i><span><%= comment.zNum %></span></div>
-			</div>
-		</a>
+			</a>
+		</div>
 		<% }) %>
 	</div>
 <% } %>
@@ -107,8 +107,8 @@
 	</header>
 	<div class="comments">
 		<% _.each(list, function(comment, i){ %>
-		<a href="detail-movie-comment.html?id=<%= comment.mvCommentIdStr || comment.mvCommentId %>">
-			<div class="comment-item dib-wrap">
+		<div class="comment-item dib-wrap">
+			<a href="detail-movie-comment.html?id=<%= comment.mvCommentIdStr || comment.mvCommentId %>">
 				<div class="comment-img img-square dib" <%= u.showImg(comment.userEntity.face_url, '80x') %>></div>
 				<ul class="comment-c dib">
 					<li class="comment-author"><%= comment.userEntity.nickName %></li>
@@ -116,8 +116,8 @@
 					<li class="comment-summary"><%= comment.contList[0].content %></li>
 				</ul>
 				<div class="comment-good"><i class="icon icon-good"></i><span><%= comment.zNum %></span></div>
-			</div>
-		</a>
+			</a>
+		</div>
 		<% }) %>
 	</div>
 <% } %>

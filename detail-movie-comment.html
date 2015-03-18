@@ -21,7 +21,7 @@
 		</div>
 		<a href="detail-movie.html?id=<%= resourceInfo.movieInfo.idStr || resourceInfo.movieInfo.id %>">
 			<div class="book-info dib-wrap">
-				<div class="book-img img-rect dib" <%= u.showImg(resourceInfo.movieInfo.moviePic) %> ></div>
+				<div class="book-img img-rect dib" <%= u.showImg(resourceInfo.movieInfo.moviePic, '240x') %> ></div>
 				<ul class="book-r dib">
 					<li class="book-name"><%= resourceInfo.movieInfo.name %></li>
 					<li class="book-author">导演:<em><%= resourceInfo.movieInfo.director %></em></li>
@@ -54,7 +54,7 @@
 			<div id="tab-content-3">
 				<div class="awards">
 					<div class="award-item dib-wrap">
-						<div class="award-photo img-square dib" style="background-image: url('imgs/image3.png');"></div>
+						<div class="award-photo img-square dib"></div>
 						<ul class="award-r dib">
 							<li class="dib-warp">
 								<span class="award-author dib">林夕大魔王</span>

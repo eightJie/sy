@@ -57,16 +57,18 @@
 	.intro-txt{
 		color: #363636;
 		padding: 8px 0 18px;
-		>p{
+		>.intro-t{
 			font-size: 15px;
-			line-height: 30px;
-			.ellipsis-multiple(3);
+			line-height: 25px;
+			height: 75px;
+			overflow: hidden;
+			// .ellipsis-multiple(3);
 		}
 	}
 
 	.intro-txt-auto{
-		>p{
-			display: block;
+		>.intro-t{
+			height: auto;
 		}
 		.icon-arrow{
 			transform: rotate(180deg);

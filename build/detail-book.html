@@ -9,7 +9,7 @@
 <body>
 <script type="text/tmpl" id="J-tmpl-page">
 	<section class="detail-summary dib-wrap">
-		<div class="summary-photo img-rect dib" <%= u.showImg(bookInfo.pagePic) %>>
+		<div class="summary-photo img-rect dib" <%= u.showImg(bookInfo.pagePic, '320x') %>>
 			<i class="icon icon-play"></i>
 			<p style="display:none;">有<b>1234</b>书单收录</p>
 		</div>
@@ -74,7 +74,11 @@
 <% } %>
 </script>
 
-<div id="J-page-container"></div>
+<div id="J-page-container">
+	<div class="loading">
+		<div class="loading-inner"><div class="loading-ani"></div></div>
+	</div>
+</div>
 
 <script src="lib/zepto/zepto.min.js"></script>
 <script src="lib/underscore/underscore-min.js"></script>

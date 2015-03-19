@@ -10,7 +10,7 @@
 <script type="text/tmpl" id="J-tmpl-page">
 	<section class="book-summary">
 		<div class="summary-info clearfix">
-			<div class="summary-img img-rect dib" <%= u.showImg(movieListInfo.firstMoviePic) %> ></div>
+			<div class="summary-img img-rect dib" <%= u.showImg(movieListInfo.firstMoviePic, '320x') %> ></div>
 			<div class="summary-r">
 				<div class="summary-name"><%= movieListInfo.name %></div>
 				<div class="summary-author dib-wrap">
@@ -36,7 +36,7 @@
 			<% _.each(list, function(item){ %>
 			<div class="book-item">
 				<div class="book-t dib-wrap">
-					<a href="detail-movie.html?id=<%= item.movieInfo.idStr || item.movieInfo.id %>" class="book-img img-rect dib" <%= u.showImg(item.movieInfo.moviePic) %> ></a>
+					<a href="detail-movie.html?id=<%= item.movieInfo.idStr || item.movieInfo.id %>" class="book-img img-rect dib" <%= u.showImg(item.movieInfo.moviePic, '150x') %> ></a>
 					<% if(item.contList[0] && item.contList[0].content){ %>
 					<a href="detail-movie-comment.html?id=<%= item.mvCommentIdStr || item.mvCommentId %>">
 					<% }else{ %>
@@ -67,7 +67,11 @@
 	<% } %>
 </script>
 
-<div id="J-page-container"></div>
+<div id="J-page-container">
+	<div class="loading">
+		<div class="loading-inner"><div class="loading-ani"></div></div>
+	</div>
+</div>
 
 	<script src="lib/zepto/zepto.min.js"></script>
 	<script src="lib/underscore/underscore-min.js"></script>

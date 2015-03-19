@@ -15,25 +15,25 @@ module.exports = function(grunt) {
           {
             expand: true,
             src: ['imgs/*'],
-            dest: 'build/'
+            dest: 'build/<%= pkg.version %>/'
           },
           // lib
           {
             expand: true,
             src: ['lib/**'],
-            dest: 'build/'
+            dest: 'build/<%= pkg.version %>/'
           },
           //css js
           {
             expand: true,
             src: ['src/**/*.js', 'src/**/*.css'],
-            dest: 'build/'
+            dest: 'build/<%= pkg.version %>/'
           },
           // html
           {
             expand: true,
             src: ['./*.html'],
-            dest: 'build/'
+            dest: 'build/<%= pkg.version %>/'
           },
         ]
       }
@@ -51,9 +51,9 @@ module.exports = function(grunt) {
       my_target: {
         files: [{
           expand: true,
-          cwd: 'build/src',
+          cwd: 'build/<%= pkg.version %>/src',
           src: '**/*.js',
-          dest: 'build/src'
+          dest: 'build/<%= pkg.version %>/src'
         }]
       }
     },

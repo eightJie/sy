@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     jshint: {
-      all: ['Gruntfile.js', 'lib/**/*.js', 'src/**/*.js']
+      files: ['Gruntfile.js', 'src/**/*.js']
     },
 
     copy: {
@@ -95,7 +95,5 @@ module.exports = function(grunt) {
 
   // 默认被执行的任务列表。
   grunt.registerTask('default', ['copy', 'uglify']);
-  grunt.registerTask('css', ['less']);
-  grunt.registerTask('watching', ['less', 'watch']);
 
 };

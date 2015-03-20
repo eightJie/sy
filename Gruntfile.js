@@ -65,8 +65,11 @@ module.exports = function(grunt) {
           yuicompress: true,
           optimization: 2
         },
-        src: 'src/**/*.less',
-        desc: 'bbb/'
+        files: [{
+          expand: true,
+          ext: '.css',
+          src: 'src/**/*.less'
+        }]
       }
     },
 
@@ -79,7 +82,7 @@ module.exports = function(grunt) {
         }
       }
     },
-    
+
   });
 
   // 加载任务插件。
